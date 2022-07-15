@@ -10,7 +10,7 @@ router.get("/posts", (req, res, next) => {
   Post.find()
     .then( (postsFromDB) => {
       const data = {
-        postssArr: postsFromDB
+        postsArr: postsFromDB
       };
       res.render("posts/posts-list", data);
     })
@@ -41,7 +41,7 @@ router.post("/posts/create", (req, res) => {
 
   const postDetails = {
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    author_id: req.session.user._id
+    author_id: req.session.user._id,
 
     status: req.body.status,
     name: req.body.name,
@@ -106,7 +106,7 @@ router.post("/post/:postId/edit", (req, res) => {
   const newDetails = {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-author_id: req.session.user._id
+    author_id: req.session.user._id,
 
     status: req.body.status,
     name: req.body.name,
