@@ -1,6 +1,7 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Epilogue', sans-serif;
+
 }
 
 a {
@@ -8,9 +9,37 @@ a {
 }
 
 h1 {
-  color: 15px;
+  font-size: 300%;
+  line-height: 4.3rem;
+  margin-right: 5rem;
 }
 
 .nav-item {
   margin-right: 1rem;
+  color: white;
+}
+
+.navbar-custom {
+  background-color: #F28482 !important;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subhero1 {
+  margin: 4 rem;
+  align-self: center;
+}
+.subhero1, h3 {
+  margin-top: 3rem;
+
+}
+.subhero2 {
+  align-self: center;
+}
+#hero-img{
+  max-width: 30vw;
+  height: auto
 }
