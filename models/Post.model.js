@@ -11,7 +11,7 @@ const postSchema = new Schema(
         type: String,
         required: true
     },
-    lookingForTitle: {
+    title: {
         type: String,
         required: true
     },
@@ -25,15 +25,14 @@ const postSchema = new Schema(
     },
     mail: {
         type: String,
-        required: true
+        //required: true
     },
     experience : {
         type: String,
-        enum: ["rookie", "medium", "advanced", "professional", "expert"],
+        enum: ["anyexp", "beginner", "intermediate", "moderate", "advanced", "expert"],
         required: true
     },
     location: String,
-    creationDate: Date,
     image: String,
   },
   {

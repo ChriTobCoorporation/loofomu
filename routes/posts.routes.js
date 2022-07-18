@@ -7,7 +7,6 @@ const router = require("express").Router();
 
 // READ: List all posts
 router.get("/posts", (req, res, next) => {
-    res.send("hi")
     Post.find()
     .then( (postsFromDB) => {
       const data = {
@@ -34,18 +33,18 @@ router.post("/posts/create", (req, res) => {
 
   const postDetails = {
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    author_id: req.session.user._id,
+  //  author_id: req.session.user._id,
 
     status: req.body.status,
     name: req.body.name,
-    lookingForTitle: req.body.lookingForTitle,
+    title: req.body.title,
     instrument: req.body.instrument,
     description: req.body.description,
-    mail: req.body.mail,  //bekommen wir beim Login - req.sessions.email?
+ //   mail: req.body.mail,  //bekommen wir beim Login - req.sessions.email?
     experience: req.body.experience,
     location: req.body.location,
-    creationDate: req.body.creationDate,
-    image: req.body.image
+ //   creationDate: req.body.creationDate,
+ //   image: req.body.image
   };
 
   Post.create(postDetails)
@@ -99,18 +98,18 @@ router.post("/post/:postId/edit", (req, res) => {
   const newDetails = {
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    author_id: req.session.user._id,
+//    author_id: req.session.user._id,
 
     status: req.body.status,
     name: req.body.name,
-    lookingForTitle: req.body.lookingForTitle,
+ //   lookingForTitle: req.body.lookingForTitle,
     instrument: req.body.instrument,
     description: req.body.description,
-    mail: req.body.mail,
+  //email: req.body.email,
     experience: req.body.experience,
     location: req.body.location,
-    creationDate: req.body.creationDate,
-    image: req.body.image
+ //   creationDate: req.body.creationDate,
+   // image: req.body.image
   }
 
 
