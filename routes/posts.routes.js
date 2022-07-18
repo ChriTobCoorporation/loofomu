@@ -13,20 +13,8 @@ router.get("/posts", (req, res, next) => {
 
   Post.find()
     .then((postsFromDB) => {
-    const data = {postsArr: postsFromDB};
-     console.log(data.postsArr[0].name);
-       const filteredData = data.postsArr.filter((e) => e.status == req.query.status)
-
-       console.log("XXXXXXXXXX",filteredData, "filtered");
-
-
-
-// const result = ages.filter(checkAdult);
-// function checkAdult(age) {
-//   return age >= 18;
-// }
-
-      res.render("posts/posts-list", data);
+      const filteredData = postsFromDB.filter((e) => e.status == req.query.status)
+      res.render("posts/posts-list", {postsArr : filteredData});
     })
     .catch((error) => {
       console.log("Error getting data from DB", error);
