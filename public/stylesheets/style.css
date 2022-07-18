@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font-family: 'Epilogue', sans-serif;
+  background-color: rgb(237, 232, 210) ;
 
 }
 
@@ -12,6 +13,7 @@ h1 {
   font-size: 300%;
   line-height: 4.3rem;
   margin-right: 5rem;
+  font-weight: 700;
 }
 
 .nav-item {
@@ -20,26 +22,54 @@ h1 {
 }
 
 .navbar-custom {
-  background-color: #F28482 !important;
+  background-color: rgb(239,218,104) ;
 }
 
 .hero {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  margin-top: 4rem;
 }
 .subhero1 {
-  margin: 4 rem;
+  margin: 4rem;
   align-self: center;
+  width: 40vw; 
 }
-.subhero1, h3 {
-  margin-top: 3rem;
+.subhero1 h3 {
+  margin: 2rem 0;
+  font-size: 150%;
+  font-weight: 380;
 
 }
 .subhero2 {
   align-self: center;
+
+  /* margin-left: 10rem; */
+ 
 }
 #hero-img{
-  max-width: 30vw;
+  max-width: 28vw;
   height: auto
+}
+
+.btn-section {
+  display: flex;
+  margin-top: 4rem;
+
+  
+}
+.btn-section a {
+  text-decoration: none;
+  color: white;
+  width: 20%;
+  height: 100%;
+  border: solid 1px;
+  padding: 1rem;
+  background-color: rgb(114,108,238);
+  border-radius: 10px;
+  border: none;
+}
+.loofoba-btn{
+  margin-left: 2rem;
 }
