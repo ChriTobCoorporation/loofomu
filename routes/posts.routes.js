@@ -63,6 +63,11 @@ router.get("/posts/:postId", (req, res) => {
 
   Post.findById(postId)
     .then( (postDetails) => {
+      const data = {
+        postDetails: postDetails
+       };
+
+
       res.render("posts/post-details", postDetails);
     })
     .catch( (error) => {
