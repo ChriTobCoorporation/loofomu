@@ -8,13 +8,24 @@ const session = require("express-session");
 const router = require("express").Router();
 
 
-// READ: List all posts
+// READ: List all posts + filter band/musicians by query
 router.get("/posts", (req, res, next) => {
+
   Post.find()
     .then((postsFromDB) => {
-      const data = {
-        postsArr: postsFromDB
-      };
+    const data = {postsArr: postsFromDB};
+     console.log(data.postsArr[0].name);
+       const filteredData = data.postsArr.filter((e) => e.status == req.query.status)
+
+       console.log("XXXXXXXXXX",filteredData, "filtered");
+
+
+
+// const result = ages.filter(checkAdult);
+// function checkAdult(age) {
+//   return age >= 18;
+// }
+
       res.render("posts/posts-list", data);
     })
     .catch((error) => {
