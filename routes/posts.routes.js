@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 const { Model } = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isAuthor = require("../middleware/isAuthor");
+const session = require("express-session");
 
 const router = require("express").Router();
 
@@ -24,12 +25,12 @@ router.get("/posts", (req, res, next) => {
 
 
 // CREATE: Render form
-router.get("/posts/create", isLoggedIn, (req, res) => {
+router.get("/posts/create", isLoggedIn, (req, res, next) => {
   res.render("posts/post-create")
 })
 
 // CREATE: Process form
-router.post("/posts/create", isLoggedIn, (req, res) => {
+router.post("/posts/create", isLoggedIn, (req, res, next) => {
 
   const postDetails = {
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -57,7 +58,7 @@ router.post("/posts/create", isLoggedIn, (req, res) => {
 })
 
 // READ: get details
-router.get("/posts/:postId", (req, res) => {
+router.get("/posts/:postId", (req, res, next) => {
   const postId = req.params.postId;
 
   Post.findById(postId)
@@ -77,17 +78,15 @@ router.get("/posts/:postId", (req, res) => {
 
 //--> check session.user = post.author, if he is allowed to edit/delete
 // UPDATE: Render form
-router.get("/posts/:postId/edit", isLoggedIn, (req, res) => {
+router.get("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
 
   Post.findById(postId)
     .then((postDetails) => {
-      // console.log(req.session.user._id ,"");
-      // console.log(postDetails.author_id);
        if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        }
-
+       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -135,18 +134,20 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
 //--> check session.user = post.author, if he is allowed to edit/delete
 // DELETE: delete post
-router.post("/posts/:postId/delete", isLoggedIn, (req, res) => {
+router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
+///XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-  Post.findByIdAndRemove(postId)
-    .then(() => {
-      res.redirect('/posts');
+  Post.findById(postId)
+    .then((post)=>{
+      if (req.session.user._id == post.author_id) {
+        Post.deleteById(postId)
+      }
     })
     .catch((error) => {
       console.log("Error deleting post from DB", error);
       next(error);
     })
-
 })
 
 module.exports = router;
