@@ -6,23 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{appTitle}}</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
   </head>
   
   <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/posts/?status=band">Looking for Musician</a></li>
-        <li><a href="/posts/?status=musician">Looking for Band</a></li>
-        <li><a href="/posts/create">Add a post</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Register</a></li>
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
+
+  <nav class="navbar bg-light navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">LOOFOMU</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/?status=band">Show all Bands</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/?status=musician">Show All Musicians</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts/create">Add A Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>           
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
     {{{body}}}
 
     <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   </body>
 
 </html>
