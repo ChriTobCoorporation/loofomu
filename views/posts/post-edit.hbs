@@ -1,0 +1,17 @@
+<h1>edit Post Details</h1>
+
+<form action="/posts/{{_id}}/edit" method="POST">
+
+    <input type="file" name="image" value="{{image}}">
+    <input type="text" name="name" value="{{name}}">
+    <input type="text" name="title" value="{{title}}">
+    <input type="text" name="genre" value="{{genre}}">
+    <input type="text" name="instrument" value="{{instrument}}">
+    <input type="text" name="experience" value="{{experience}}">
+    <input type="text" name="description" value="{{description}}">
+    <input type="text" name="location" value="{{location}}">
+    <input type="text" name="email" value="{{email}}">
+
+    <button type="submit">Submit your Changes</button>
+</form>
+

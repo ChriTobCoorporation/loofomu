@@ -9,4 +9,9 @@
 <li>{{experience}}</li>
 <li>{{description}}</li>
 <li>{{location}}</li>
-<li>{{mail}}</li>
+<li>{{email}}</li>
+
+<button><a href="/posts/{{_id}}/edit">Edit</a></button>
+<form action="/posts/{{_id}}/delete" method="POST">
+        <button type="submit">Delete</button>
+</form>
