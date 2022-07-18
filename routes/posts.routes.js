@@ -132,22 +132,22 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
 });
 
-//--> check session.user = post.author, if he is allowed to edit/delete
-// DELETE: delete post
-router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
-  const { postId } = req.params;
-///XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+router.post("/posts/:postId/delete", isLoggedIn, (req, res) => {
 
+  const {postId} = req.params;
+  
   Post.findById(postId)
-    .then((post)=>{
-      if (req.session.user._id == post.author_id) {
-        Post.deleteById(postId)
-      }
-    })
-    .catch((error) => {
-      console.log("Error deleting post from DB", error);
-      next(error);
-    })
+  .then((post) => {
+    if (req.session.user._id == post.author_id)
+    return Post.findByIdAndRemove(postId)
+  })
+  .then(()=> {
+    res.redirect('/posts');
+  })
+  .catch( (error) => {
+    console.log("Error deleting post from DB", error);
+    next(error);
+  })
 })
 
 module.exports = router;
