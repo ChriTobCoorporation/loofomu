@@ -3,9 +3,9 @@
 <form action="/posts/create" method="POST">
   <label>
     Looking for Band or Musician
-    <select name="author">
-      <option value="status">Band</option>
-      <option value="status">Musician</option>
+    <select name="status">
+      <option value="musician">Band</option>
+      <option value="band">Musician</option>
     </select>
   </label>
 
@@ -16,17 +16,17 @@
 
   <label>
     Name:
-    <input type="text" name="title" />
+    <input type="text" name="name" />
   </label>
 
   <label>
     Instrument:
-    <input name="description" > </input>
+    <input name="instrument" />
   </label>
 
     <label>
     Genre:
-    <input name="genre" type="text"> </input>
+    <input name="genre" type="text" /> 
   </label>
 
   <label>
@@ -36,12 +36,12 @@
 
   <label>
     Your location:
-    <input type="text" name="description" />
+    <input type="text" name="location" />
   </label>
 
 <label>
     Upload an Image:
-    <input type="file" name="description" />
+    <input type="file" name="image" />
   </label>
 
   <button type="submit">Submit your post</button>
