@@ -1,6 +1,7 @@
 const Post = require("../models/Post.model");
 const User = require("../models/User.model");
 const { Model } = require("mongoose");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 const router = require("express").Router();
 
@@ -22,19 +23,16 @@ router.get("/posts", (req, res, next) => {
 
 
 // CREATE: Render form
-router.get("/posts/create", (req, res) => {
-
+router.get("/posts/create", isLoggedIn, (req, res) => {
   res.render("posts/post-create")
-
 })
 
 // CREATE: Process form
-router.post("/posts/create", (req, res) => {
+router.post("/posts/create", isLoggedIn, (req, res) => {
 
   const postDetails = {
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //  author_id: req.session.user._id,
-
+    author_id: req.session.user._id,
     status: req.body.status,
     name: req.body.name,
     title: req.body.title,
@@ -78,7 +76,7 @@ router.get("/posts/:postId", (req, res) => {
 
 //--> check session.user = post.author, if he is allowed to edit/delete
 // UPDATE: Render form
-router.get("/posts/:postId/edit", (req, res) => {
+router.get("/posts/:postId/edit", isLoggedIn, (req, res) => {
   const { postId } = req.params;
 
   Post.findById(postId)
@@ -95,7 +93,7 @@ router.get("/posts/:postId/edit", (req, res) => {
 
 // UPDATE: Process form
 /////////bestätigungsnachricht hinzufügen!!!!!!!!!!!!!!!!!!!!
-router.post("/posts/:postId/edit", (req, res, next) => {
+router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
   const postId = req.params.postId;
   console.log("i'm inside edit post route")
@@ -133,7 +131,7 @@ router.post("/posts/:postId/edit", (req, res, next) => {
 
 //--> check session.user = post.author, if he is allowed to edit/delete
 // DELETE: delete post
-router.post("/posts/:postId/delete", (req, res) => {
+router.post("/posts/:postId/delete", isLoggedIn, (req, res) => {
   const { postId } = req.params;
 
   Post.findByIdAndRemove(postId)
