@@ -2,6 +2,7 @@ const Post = require("../models/Post.model");
 const User = require("../models/User.model");
 const { Model } = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isAuthor = require("../middleware/isAuthor");
 
 const router = require("express").Router();
 
@@ -33,16 +34,16 @@ router.post("/posts/create", isLoggedIn, (req, res) => {
   const postDetails = {
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     author_id: req.session.user._id,
-    status: req.body.status,
+    image: req.body.image,
     name: req.body.name,
+    status: req.body.status,
     title: req.body.title,
+    genre: req.body.genre,
     instrument: req.body.instrument,
-    description: req.body.description,
-    //   mail: req.body.mail,  //bekommen wir beim Login - req.sessions.email?
     experience: req.body.experience,
+    description: req.body.description,
     location: req.body.location,
-    //   creationDate: req.body.creationDate,
-    //   image: req.body.image
+    email: req.body.email,
   };
 
   Post.create(postDetails)
@@ -81,7 +82,12 @@ router.get("/posts/:postId/edit", isLoggedIn, (req, res) => {
 
   Post.findById(postId)
     .then((postDetails) => {
-      res.render("posts/post-edit", postDetails);
+      // console.log(req.session.user._id ,"");
+      // console.log(postDetails.author_id);
+       if (req.session.user._id == postDetails.author_id) {
+        res.render("posts/post-edit", postDetails);
+       }
+
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -96,12 +102,11 @@ router.get("/posts/:postId/edit", isLoggedIn, (req, res) => {
 router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
   const postId = req.params.postId;
-  console.log("i'm inside edit post route")
-  console.log(req.body);
+  console.log(req.session);
   const newDetails = {
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    //    author_id: req.session.user._id,
+    author_id: req.session.user._id,
     image: req.body.image,
     name: req.body.name,
     status: req.body.status,
@@ -118,7 +123,6 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
   Post.findByIdAndUpdate(postId, newDetails)
     .then((edited) => {
       //or maybe to the updated post??
-      console.log(edited)
       res.redirect("/posts");
     })
     .catch((error) => {
