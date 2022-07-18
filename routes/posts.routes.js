@@ -1,5 +1,5 @@
 const Post = require("../models/Post.model");
-const Author = require("../models/Author.model");
+const User = require("../models/User.model");
 const { Model } = require("mongoose");
 
 const router = require("express").Router();
@@ -7,11 +7,12 @@ const router = require("express").Router();
 
 // READ: List all posts
 router.get("/posts", (req, res, next) => {
-  Post.find()
+    res.send("hi")
+    Post.find()
     .then( (postsFromDB) => {
       const data = {
         postsArr: postsFromDB
-      };
+       };
       res.render("posts/posts-list", data);
     })
     .catch( (error) => {
@@ -24,16 +25,8 @@ router.get("/posts", (req, res, next) => {
 // CREATE: Render form
 router.get("/posts/create", (req, res) => {
 
-  Post.find()
-    .then( postsArr => {
-      res.render("posts/post-create", {postsArr});
-    })
-    .catch( (error) => {
-      console.log("Error getting authors from DB", error);
-      next(error);
-    })
+      res.render("posts/post-create")
 
-  
 })
 
 // CREATE: Process form
@@ -48,7 +41,7 @@ router.post("/posts/create", (req, res) => {
     lookingForTitle: req.body.lookingForTitle,
     instrument: req.body.instrument,
     description: req.body.description,
-    mail: req.body.mail,
+    mail: req.body.mail,  //bekommen wir beim Login - req.sessions.email?
     experience: req.body.experience,
     location: req.body.location,
     creationDate: req.body.creationDate,

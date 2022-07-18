@@ -1,0 +1,48 @@
+<h1>Create a post</h1>
+
+<form action="/posts/create" method="POST">
+  <label>
+    Looking for Band or Musician
+    <select name="author">
+      <option value="status">Band</option>
+      <option value="status">Musician</option>
+    </select>
+  </label>
+
+  <label>
+    Title:
+    <input type="text" name="title" />
+  </label>
+
+  <label>
+    Name:
+    <input type="text" name="title" />
+  </label>
+
+  <label>
+    Instrument:
+    <input name="description" > </input>
+  </label>
+
+    <label>
+    Genre:
+    <input name="genre" type="text"> </input>
+  </label>
+
+  <label>
+    Describe what you are looking for :
+    <textarea type="text" name="description" cols="30" rows="10"></textarea> 
+  </label>
+
+  <label>
+    Your location:
+    <input type="text" name="description" />
+  </label>
+
+<label>
+    Upload an Image:
+    <input type="file" name="description" />
+  </label>
+
+  <button type="submit">Submit your post</button>
+</form>

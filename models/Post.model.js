@@ -8,7 +8,7 @@ const postSchema = new Schema(
         enum: ["musician", "band"]
     }, 
     name: {
-        tpype: String,
+        type: String,
         required: true
     },
     lookingForTitle: {
@@ -42,6 +42,6 @@ const postSchema = new Schema(
 
 );
 
-const User = model("Post", postSchema);
+const Post = model("Post", postSchema);
 
 module.exports = Post;
