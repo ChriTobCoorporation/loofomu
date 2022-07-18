@@ -32,8 +32,7 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 router.post("/posts/create", isLoggedIn, (req, res, next) => {
 
   const postDetails = {
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    author_id: req.session.user._id,
+    // author_id: req.session.user._id,
     image: req.body.image,
     name: req.body.name,
     status: req.body.status,
@@ -48,7 +47,7 @@ router.post("/posts/create", isLoggedIn, (req, res, next) => {
 
   Post.create(postDetails)
     .then(() => {
-      res.redirect("/posts");
+      res.redirect(`/posts/?status=${postDetails.status}`);
     })
     .catch((error) => {
       console.log("Error creating post in the DB", error);
@@ -85,7 +84,7 @@ router.get("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
        if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        }
-       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -102,9 +101,7 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
   const postId = req.params.postId;
   console.log(req.session);
   const newDetails = {
-
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    author_id: req.session.user._id,
+    // author_id: req.session.user._id,
     image: req.body.image,
     name: req.body.name,
     status: req.body.status,
@@ -120,8 +117,7 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
   Post.findByIdAndUpdate(postId, newDetails)
     .then((edited) => {
-      //or maybe to the updated post??
-      res.redirect("/posts");
+      res.redirect(`/posts/?status=${newDetails.status}`);
     })
     .catch((error) => {
       console.log("Error updating post in DB", error);
@@ -140,8 +136,8 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res) => {
     if (req.session.user._id == post.author_id)
     return Post.findByIdAndRemove(postId)
   })
-  .then(()=> {
-    res.redirect('/posts');
+  .then((removedPost)=> {
+    res.redirect(`/posts/?status=${removedPost.status}`);
   })
   .catch( (error) => {
     console.log("Error deleting post from DB", error);

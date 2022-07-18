@@ -2,8 +2,9 @@ const { Schema, model } = require("mongoose");
 
 const postSchema = new Schema(
   {
-    author_id: String,
-    //author_id: {type: Schema.Types.ObjectId, ref: 'User'},
+    author_id: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'},
     status: {
         type: String,
         enum: ["musician", "band"]
