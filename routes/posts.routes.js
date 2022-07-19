@@ -4,7 +4,7 @@ const { Model } = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isAuthor = require("../middleware/isAuthor");
 const session = require("express-session");
-
+const summer = require("../utils/cloudinary")
 const router = require("express").Router();
 
 
@@ -29,31 +29,36 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 })
 
 // CREATE: Process form
-router.post("/posts/create", isLoggedIn, (req, res, next) => {
+router.post("/posts/create", summer.single("image"), isLoggedIn,  (req, res, next) => {
+console.log("xxxxxxxxxxxxxx")
 
-  const postDetails = {
-    author_id: req.session.user._id,
-    image: req.body.image,
-    name: req.body.name,
-    status: req.body.status,
-    title: req.body.title,
-    genre: req.body.genre,
-    instrument: req.body.instrument,
-    experience: req.body.experience,
-    description: req.body.description,
-    location: req.body.location,
-    email: req.body.email,
-  };
+let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
+console.log(req.body)
+image = req.file.path
+Post.create({
+    author_id,
+    image,
+    name,
+    status,
+    title,
+    genre,
+    instrument,
+    experience,
+    description,
+    location,
+    email,
+  })
 
-  Post.create(postDetails)
-    .then(() => {
-      res.redirect(`/posts/?status=${postDetails.status}`);
+    .then((element) => {
+console.log(element, "hi")
+     res.redirect(`/posts/?status=${status}`);
     })
     .catch((error) => {
       console.log("Error creating post in the DB", error);
       next(error);
     })
 })
+
 
 // READ: get details
 router.get("/posts/:postId", (req, res, next) => {

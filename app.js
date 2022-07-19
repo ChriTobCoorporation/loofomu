@@ -23,6 +23,7 @@ const projectName = "loofomu";
 
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
+
 // 👇 Start handling routes here
 app.use("/", (req, res, next) => {
     console.log("hello")
