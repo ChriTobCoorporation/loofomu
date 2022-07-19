@@ -32,7 +32,7 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 router.post("/posts/create", isLoggedIn, (req, res, next) => {
 
   const postDetails = {
-    // author_id: req.session.user._id,
+    author_id: req.session.user._id,
     image: req.body.image,
     name: req.body.name,
     status: req.body.status,
@@ -81,7 +81,8 @@ router.get("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
   Post.findById(postId)
     .then((postDetails) => {
-       if (req.session.user._id == postDetails.author_id) {
+      console.log("huhu", req.session.user._id, "haha", postDetails.author_id.toString())
+       if (req.session.user._id == postDetails.author_id.toString()) {
         res.render("posts/post-edit", postDetails);
        }
        //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
@@ -101,7 +102,7 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
   const postId = req.params.postId;
   console.log(req.session);
   const newDetails = {
-    // author_id: req.session.user._id,
+    author_id: req.session.user._id,
     image: req.body.image,
     name: req.body.name,
     status: req.body.status,
@@ -127,13 +128,13 @@ router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
 });
 
-router.post("/posts/:postId/delete", isLoggedIn, (req, res) => {
+router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
 
   const {postId} = req.params;
   
   Post.findById(postId)
   .then((post) => {
-    if (req.session.user._id == post.author_id)
+    (req.session.user._id == post.author_id)
     return Post.findByIdAndRemove(postId)
   })
   .then((removedPost)=> {

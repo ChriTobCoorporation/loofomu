@@ -84,13 +84,65 @@ h1 {
 .create-form {
   display: flex;
   flex-direction: column;
-  border: solid 1px;
+  /* border: solid 1px; */
   align-items: flex-start;
   justify-content: space-between;
+  margin: 0.5rem;
+  width: 30vw;
+
 }
 
 .create-form label {
-  margin: 0.5rem;
+  margin-top: 1rem;;
   display: flex;
   flex-direction: column;
 }
+
+.create-form input, select, textarea, button {
+  width: 30vw;
+  border-radius: 5px;
+  border: 1px solid rgba(133, 130, 130, 0.5);
+  padding: 0.4rem;
+}
+.create-form select {
+ padding: 0.5rem;
+}
+
+.create-form input, textarea, select {
+
+}
+.submit-btn {
+  margin-top: 1rem;
+  align-self: center;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  height: 100%;
+  border: solid 1px;
+  padding: 1rem;
+  background-color: rgb(244,90,73);
+  border-radius: 10px;
+  border: none;
+}
+input[type="file"] {
+  display: none;
+}
+.upload-field {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.create-container {
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+.create-image {
+  max-width: 50vw;
+  height: auto;
+  align-self: flex-start;
+}
+
