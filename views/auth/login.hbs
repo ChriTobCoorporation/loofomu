@@ -1,13 +1,19 @@
-<form action="/login" method="POST">
-   <label> Email
-      <input type="text" name="email">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
 
-   <button type="submit">Submit</button>
+
+<form class="login-form d-flex justify-content-center align-items-center flex-column" action="/login" method="POST">
+  <div class="form-group col-4">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group col-4">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-custom">Submit</button>
 </form>
+
+<object data="/images/music file2-06.svg" width="500" height="500"> </object>
 
 {{#if errorMessage}}
    {{errorMessage}}
