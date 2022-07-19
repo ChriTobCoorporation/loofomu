@@ -12,6 +12,10 @@
     <input type="text" name="location" value="{{location}}">
     <input type="text" name="email" value="{{email}}">
 
+    {{!-- musician/band, hidden, but needed for redirect post/edit&delete route
+    to go back to the list of the bands/or musicians you come from (to set query get.posts/?status=band/musician)--}}
+    <input type="hidden" name="status" value="{{status}}">
+
     <button type="submit">Submit your Changes</button>
 </form>
 
