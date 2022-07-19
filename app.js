@@ -24,6 +24,12 @@ const projectName = "loofomu";
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
+app.use((req, res, next) => {
+    console.log("hello")
+    res.locals.user = req.session.user;
+    console.log(req.session.user)
+    next();
+    });
 const index = require("./routes/index.routes");
 app.use("/", index);
 
@@ -32,10 +38,7 @@ const postsRoutes = require("./routes/posts.routes")
 app.use("/", authRoutes);
 app.use("/", postsRoutes);
 
-app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
-    });
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

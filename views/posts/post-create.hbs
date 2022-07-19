@@ -1,12 +1,12 @@
 
 
 <h1>Create a post</h1>
-
-<form action="/posts/create" method="POST">
+<div >
+<form class="create-form" action="/posts/create" method="POST">
   <label>
     Looking for Band or Musician
     <select name="status">
-      <option value="musician">Musican</option>
+      <option value="musician">Musician</option>
       <option value="band">Band</option>
     </select>
   </label>
@@ -23,7 +23,7 @@
 
   <label>
     Instrument you are looking for / You play
-    <input name="instrument" />
+    <input type="text" name="instrument" />
   </label>
 
     <label>
@@ -59,3 +59,4 @@
 
   <button type="submit">Submit your post</button>
 </form>
+</div>
