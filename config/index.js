@@ -28,6 +28,10 @@ const MongoStore = require("connect-mongo");
 // Connects the mongo uri to maintain the same naming structure
 const MONGO_URI = require("../utils/consts");
 
+
+//nodemailer -> sending mails
+const nodemailer = require('nodemailer')
+
 // Middleware configuration
 module.exports = (app) => {
   // In development environment the app logs
