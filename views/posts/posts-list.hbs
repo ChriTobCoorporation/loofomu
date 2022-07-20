@@ -1,4 +1,4 @@
-<h1>All Musicians/Bands Posts</h1>
+
 <p>
   <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
     aria-expanded="false" aria-controls="collapseFilters">
@@ -57,14 +57,17 @@
     </form>
   </div>
 </div>
-{{#each postsArr}}
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{this.title}}</h5>
-    <p class="card-text">{{this.genre}}</p>
-    <p class="card-text">{{this.instrument}}</p>
-    <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+<div class="cards-container">
+  {{#each postsArr}}
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Name: {{this.name}}</h5>
+      <p class="card-text">{{this.status}}</p>
+      <p class="card-text">Genre: {{this.genre}}</p>
+      <p class="card-text">Instruments: {{this.instrument}}</p>
+      <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+    </div>
   </div>
+  {{/each}}
 </div>
-{{/each}}

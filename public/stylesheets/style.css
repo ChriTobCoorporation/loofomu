@@ -32,10 +32,10 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .subhero1 {
-  margin: 4rem;
+  margin: 1rem 3rem;
   align-self: center;
   width: 40vw; 
 }
@@ -108,9 +108,6 @@ h1 {
  padding: 0.5rem;
 }
 
-.create-form input, textarea, select {
-
-}
 .submit-btn {
   margin-top: 1rem;
   align-self: center;
@@ -146,3 +143,25 @@ input[type="file"] {
   align-self: flex-start;
 }
 
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+.card {
+  margin: 1rem;
+}
+
+.details-header {
+  width: 80vw;
+  margin: 0;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: rgb(244,90,73);
+    border-color: rgb(244,90,73);
+}

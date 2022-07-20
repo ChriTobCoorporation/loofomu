@@ -81,13 +81,13 @@ router.get("/posts/:postId", (req, res, next) => {
 
 //--> check session.user = post.author, if he is allowed to edit/delete
 // UPDATE: Render form
-router.get("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
+router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
 
   Post.findById(postId)
     .then((postDetails) => {
-      console.log("huhu", req.session.user._id, "haha", postDetails.author_id.toString())
-       if (req.session.user._id == postDetails.author_id.toString()) {
+//      console.log("huhu", req.session.user._id, "haha", postDetails.author_id.toString())
+       if (req.session.user._id !== postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        }
        //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
@@ -102,35 +102,33 @@ router.get("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
 
 // UPDATE: Process form
 /////////bestätigungsnachricht hinzufügen!!!!!!!!!!!!!!!!!!!!
-router.post("/posts/:postId/edit", isLoggedIn, (req, res, next) => {
-
-  const postId = req.params.postId;
-  console.log(req.session);
-  const newDetails = {
-    author_id: req.session.user._id,
-    image: req.body.image,
-    name: req.body.name,
-    status: req.body.status,
-    title: req.body.title,
-    genre: req.body.genre,
-    instrument: req.body.instrument,
-    experience: req.body.experience,
-    description: req.body.description,
-    location: req.body.location,
-    email: req.body.email,
-  }
-
-
-  Post.findByIdAndUpdate(postId, newDetails)
+router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, res, next) => {
+  console.log("xxxxxxxxxxxxxx", req.file)
+  const postId = req.params.postId
+  let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
+  console.log(req.body)
+  status = req.body.status[status.length - 1]
+  image = req.file.path
+  Post.findByIdAndUpdate(postId, {
+    author_id,
+    image,
+    name,
+    status,
+    title,
+    genre,
+    instrument,
+    experience,
+    description,
+    location,
+    email
+  })
     .then((edited) => {
-      res.redirect(`/posts/?status=${newDetails.status}`);
+      res.redirect(`/posts/?status=${status}`);
     })
     .catch((error) => {
       console.log("Error updating post in DB", error);
       next(error);
     })
-
-
 });
 
 router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
@@ -150,5 +148,7 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
     next(error);
   })
 })
+
+
 
 module.exports = router;

@@ -25,6 +25,9 @@ const postSchema = new Schema(
         type: String,
         required: true
     },
+    genre: {
+        type: String
+    },
     email: {
         type: String,
         //required: true

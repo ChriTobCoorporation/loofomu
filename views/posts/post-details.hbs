@@ -1,6 +1,7 @@
-<h1>Post Details</h1>
+<img class="details-header" src="{{image}}" alt="">
+<h3>{{title}}</h3>
 
-<li>{{image}}</li>
+
 <li>{{name}}</li>
 <li>{{status}}</li>
 <li>{{title}}</li>
@@ -15,3 +16,7 @@
 <form action="/posts/{{_id}}/delete" method="POST">
         <button type="submit">Delete</button>
 </form>
+<form action="/posts/{{_id}}/contact" method="GET">
+        <button type="submit">Contact</button>
+</form>
+
