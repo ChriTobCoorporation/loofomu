@@ -1,0 +1,48 @@
+i am views/user/user-profile.hbs
+
+<h1>Welcome back {{currentSession.user.email}}</h1>
+
+<hr>
+
+
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBandPosts"
+    aria-expanded="false" aria-controls="collapseBandPosts">
+    Your Band Posts
+</button>
+</p>
+<div class="collapse" id="collapseBandPosts">
+    {{#each currentSession.allBandPosts}}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.genre}}</p>
+            <p class="card-text">{{this.instrument}}</p>
+            <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<p>
+
+<hr>
+
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMusicianPosts"
+    aria-expanded="false" aria-controls="collapseMusicianPosts">
+    Your Musician Posts
+</button>
+</p>
+<div class="collapse" id="collapseMusicianPosts">
+{{#each currentSession.allMusicianPosts}}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.genre}}</p>
+        <p class="card-text">{{this.instrument}}</p>
+        <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+    </div>
+</div>
+{{/each}}
+</div>
+<p>
