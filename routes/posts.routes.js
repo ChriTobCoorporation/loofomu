@@ -34,9 +34,9 @@ router.post("/posts/create", summer.single("image"), isLoggedIn,  (req, res, nex
 
 let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
 console.log(req.body)
-//if(req.file.path.length() >0) {image = req.file.path}
+if(req.file.path) {image = req.file.path}
 
-image = req.file.path
+
 email = req.session.user.email
 author_id = req.session.user._id
 console.log("email:" ,email)
@@ -89,14 +89,15 @@ router.get("/posts/:postId", (req, res, next) => {
 // UPDATE: Render form
 router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
-  //console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
   Post.findById(postId)
     .then((postDetails) => {
     console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
        if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
+       } else {
+        res.send("not allowed")
        }
-       res.send("not allowed")
+
        //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
     })
     .catch((error) => {

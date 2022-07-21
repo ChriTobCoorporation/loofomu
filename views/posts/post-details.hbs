@@ -1,16 +1,17 @@
-<img class="details-header" src="{{image}}" alt="">
+<img class="details-header" src="{{image}}" alt=""><br>
+
 <h3>{{title}}</h3>
 
 
-<li>{{name}}</li>
-<li>{{status}}</li>
-<li>{{title}}</li>
-<li>{{genre}}</li>
-<li>{{instrument}}</li>
-<li>{{experience}}</li>
-<li>{{description}}</li>
-<li>{{location}}</li>
-<li>{{email}}</li>
+<li>Name: {{name}}</li><br>
+<li>we/i'm a: {{status}}</li><br>
+<li>{{title}}</li><br>
+<li>Genre:{{genre}}</li><br>
+<li>Instrument('s'){{instrument}}</li><br>
+<li>Experience: {{experience}}</li><br>
+<li>{{description}}</li><br>
+<li>Location: {{location}}</li><br>
+{{!-- mail:<li>{{email}}</li> --}}
 
 <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
 <form action="/posts/{{_id}}/delete" method="POST">
