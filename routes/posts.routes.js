@@ -9,6 +9,7 @@ router.get("/posts", (req, res, next) => {
 
   Post.find()
     .then((postsFromDB) => {
+      console.log(req.query)
       const filteredData = postsFromDB.filter((e) => e.status == req.query.status)
       res.render("posts/posts-list", {postsArr : filteredData});
     })
@@ -17,6 +18,11 @@ router.get("/posts", (req, res, next) => {
       next(error);
     })
 });
+
+router.post("/posts", (req, res, next) => {
+  console.log(req.body) 
+  
+})
 
 
 // CREATE: Render form

@@ -1,53 +1,61 @@
-<img class="details-header" src="{{image}}" alt=""><br>
+<div class="details-container">
+  <div class="img-ctn">
+        <h4>Hey here is</h4>
+      <h4 class="details-name">{{name}}</h4>
+    <img class="details-header" src="{{image}}" alt=""><br>
+            <h4>from</h4>
+      <h4 class="details-name">{{location}}</h4>
+  </div>
 
-<h3>{{title}}</h3>
+  <div class="details-container-info">
+    <h3>{{title}}</h3>
 
+    <li>Name: {{name}}</li><br>
+    <li>we/i'm a: {{status}}</li><br>
+    <li>{{title}}</li><br>
+    <li>Genre:{{genre}}</li><br>
+    <li>Instrument('s'){{instrument}}</li><br>
+    <li>Experience: {{experience}}</li><br>
+    <li>{{description}}</li><br>
+    <li>Location: {{location}}</li><br>
+    {{!-- mail:<li>{{email}}</li> --}}
+  
 
-<li>Name: {{name}}</li><br>
-<li>we/i'm a: {{status}}</li><br>
-<li>{{title}}</li><br>
-<li>Genre:{{genre}}</li><br>
-<li>Instrument('s'){{instrument}}</li><br>
-<li>Experience: {{experience}}</li><br>
-<li>{{description}}</li><br>
-<li>Location: {{location}}</li><br>
-{{!-- mail:<li>{{email}}</li> --}}
+    <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
+    <form action="/posts/{{_id}}/delete" method="POST">
+            <button class="btn" type="submit">Delete</button>
+    </form>
 
-<button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
-<form action="/posts/{{_id}}/delete" method="POST">
-        <button class="btn" type="submit">Delete</button>
-</form>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Contact
-</button>
-
+  <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Contact
+    </button>
+  </div>
+</div>
 <!-- Modal -->
 
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Shoot {{name}} a message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form action="/posts/{{_id}}/contact" method="POST">
-          <div class="modal-body">
-              <input name="emailAuthor" type="email" class="form-control" placeholder="Your email address here">  {{!-- that info is just sent as string in the subject of the mail, so the receiving end knows who wrote that mail --}}
-              <input name="subject" type="text" class="form-control  mt-2 mb-2" placeholder="Your subject here">
-            <div class="form-floating">
-              <textarea name="message" class="form-control" placeholder="your message here" id="floatingTextarea2" style="height: 100px"></textarea>
-              <label for="floatingTextarea2">Your message here</label>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Shoot {{name}} a message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Send Mail</button>
-          </form>
+          <form action="/posts/{{_id}}/contact" method="POST">
+            <div class="modal-body">
+                <input name="emailAuthor" type="email" class="form-control" placeholder="Your email address here">  {{!-- that info is just sent as string in the subject of the mail, so the receiving end knows who wrote that mail --}}
+                <input name="subject" type="text" class="form-control  mt-2 mb-2" placeholder="Your subject here">
+              <div class="form-floating">
+                <textarea name="message" class="form-control" placeholder="your message here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Your message here</label>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send Mail</button>
+            </form>
+          </div>
         </div>
-      </div>
-    </div>
   </div>
 
 

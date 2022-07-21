@@ -152,13 +152,6 @@ input[type="file"] {
   margin: 1rem;
 }
 
-.details-header {
-  width: 80vw;
-  margin: 0;
-}
-
-
-
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:active,
@@ -204,4 +197,27 @@ text-decoration: none;
 
 .log-hero {
   max-width: 44vw;
+}
+
+.img-ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 5rem;
+  padding: 2rem;
+}
+
+
+.details-container {
+  display: flex;
+  background-color: white;
+  margin-right: 5rem;
+}
+
+.details-container img {
+  width: 30vw;
+}
+.details-name {
+  font-weight: 600;
 }
