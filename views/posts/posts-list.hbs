@@ -2,7 +2,7 @@
 <p>
   <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
     aria-expanded="false" aria-controls="collapseFilters">
-    change Filters
+    search filters
   </button>
 </p>
 <div class="collapse" id="collapseFilters">
@@ -28,7 +28,7 @@
 
 
         <select name="experience">
-          <option disabled selected value> -- select exp -- </option>
+          <option disabled selected value> -- select experience -- </option>
           <option value="anyexp">Any Experience</option>
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
@@ -51,12 +51,14 @@
 <div class="cards-container">
   {{#each postsArr}}
   <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  <a href="/posts/{{this._id}}" >
+  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  </a>
     <div class="card-body">
       <h5 class="card-title">Name: {{this.name}}</h5>
-      <p class="card-text">{{this.status}}</p>
-      <p class="card-text">Genre: {{this.genre}}</p>
-      <p class="card-text">Instruments: {{this.instrument}}</p>
+      <p id="status-card" class="card-text">{{this.status}}</p>
+      <p class="card-text"><span id="categories">Genre:</span>  {{this.genre}}</p>
+      <p class="card-text"><span id="categories">Instrument:</span> {{this.instrument}}</p>
       <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
     </div>
   </div>

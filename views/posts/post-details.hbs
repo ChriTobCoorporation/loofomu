@@ -1,36 +1,39 @@
+<div class="details-main">
 <div class="details-container">
   <div class="img-ctn">
-        <h4>Hey here is</h4>
+        <h4>Hey there, it´s</h4>
       <h4 class="details-name">{{name}}</h4>
     <img class="details-header" src="{{image}}" alt=""><br>
+    <h4 class="details-subhead" >{{status}}</h4>
             <h4>from</h4>
       <h4 class="details-name">{{location}}</h4>
   </div>
 
   <div class="details-container-info">
     <h3>{{title}}</h3>
-
-    <li>Name: {{name}}</li><br>
-    <li>we/i'm a: {{status}}</li><br>
-    <li>{{title}}</li><br>
-    <li>Genre:{{genre}}</li><br>
-    <li>Instrument('s'){{instrument}}</li><br>
-    <li>Experience: {{experience}}</li><br>
-    <li>{{description}}</li><br>
-    <li>Location: {{location}}</li><br>
-    {{!-- mail:<li>{{email}}</li> --}}
-  
-
-    <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
-    <form action="/posts/{{_id}}/delete" method="POST">
-            <button class="btn" type="submit">Delete</button>
-    </form>
-
-  <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    
+    
+    <div class="cata">
+      <li> <span id="categories">Genre:</span> <span id="span-details">{{genre}}</span> </li>
+      <li> <span id="categories">Instrument´(s):</span> {{instrument}}</li>
+      <li> <span id="categories">Experience:</span> {{experience}}</li>
+    </div> 
+    <div class="descr-ctn">
+    <p>{{description}}</p> 
+    </div>
+    <div class="another-button-div">
+      <form class="details-btn" action="/posts/{{_id}}/delete" method="POST">
+              <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
+              <button class="btn" type="submit">Delete</button>
+      </form>
+        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Contact
-    </button>
+      </button>
+    </div>
+  <!-- Button trigger modal -->
+
   </div>
+</div>
 </div>
 <!-- Modal -->
 
