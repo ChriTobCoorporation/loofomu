@@ -18,7 +18,6 @@
     <li>Experience: {{experience}}</li><br>
     <li>{{description}}</li><br>
     <li>Location: {{location}}</li><br>
-    {{!-- mail:<li>{{email}}</li> --}}
     {{#ifEquals author_id this.session.user._id }}
       <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
       <form action="/posts/{{_id}}/delete" method="POST">
