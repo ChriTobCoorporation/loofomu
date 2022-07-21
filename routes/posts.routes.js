@@ -6,7 +6,6 @@ const isAuthor = require("../middleware/isAuthor");
 const session = require("express-session");
 const summer = require("../utils/cloudinary")
 const router = require("express").Router();
-//const nodemailer = require("../config/index")
 var nodemailer = require('nodemailer')
 
 // READ: List all posts + filter band/musicians by query
@@ -26,6 +25,7 @@ router.get("/posts", (req, res, next) => {
 
 // CREATE: Render form
 router.get("/posts/create", isLoggedIn, (req, res, next) => {
+  console.log(req.session.user)
   res.render("posts/post-create")
 })
 
@@ -35,8 +35,9 @@ console.log("xxxxxxxxxxxxxx")
 
 let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
 console.log(req.body)
-//image = req.file.path
+image = req.file.path
 email = req.session.user.email
+author_id = req.session.user._id
 console.log("email:" ,email)
 Post.create({
     author_id,
@@ -54,7 +55,8 @@ Post.create({
 
     .then((element) => {
 console.log(element, "hi")
-     res.redirect(`/posts/?status=${status}`);
+
+     res.redirect(`/posts/?status=${status}`, `<script>alert("Post created Successfully.")</script>`);
     })
     .catch((error) => {
       console.log("Error creating post in the DB", error);
@@ -86,13 +88,14 @@ router.get("/posts/:postId", (req, res, next) => {
 // UPDATE: Render form
 router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
-
+  //console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
   Post.findById(postId)
     .then((postDetails) => {
-//      console.log("huhu", req.session.user._id, "haha", postDetails.author_id.toString())
-       if (req.session.user._id !== postDetails.author_id) {
+    console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
+       if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        }
+       res.send("not allowed")
        //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
     })
     .catch((error) => {
@@ -112,6 +115,7 @@ router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, re
   console.log(req.body)
   status = req.body.status[status.length - 1]
   image = req.file.path
+  author_id = req.session.user._id
   Post.findByIdAndUpdate(postId, {
     author_id,
     image,
@@ -185,18 +189,21 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
 router.post('/posts/:postId/contact', (req, res, next) => {
   let { emailSender, subject, message } = req.body;
   let transporter = nodemailer.createTransport({
-    service: 'Hotmail',
+    service: 'Gmail',
         auth: {
-           user: 'maxtobiasconrad@hotmail.com',
-           pass: 'Lilalila1' 
-    }
+           user: 'maktub1006@gmail.com',
+           pass: "\14)bN1+12?a"
+    },
+    debug: true, 
+    logger: true 
   });
+  console.log(transporter)
   transporter.sendMail({
     from: '"My Awesome Project " <maxtobiasconrad@hotmail.com>',
     to: "maktub1006@gmail.com", 
-    subject: subject, 
-    text: message,
-    html: `<b>${message}</b>`
+    subject: "hi", 
+    text: "message",
+    html: `<b>"hi"</b>`
   })
   .then(info => console.log('message', {subject, message, info}))
   .catch(error => console.log(error));
