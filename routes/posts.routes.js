@@ -55,8 +55,10 @@ Post.create({
 
     .then((element) => {
 console.log(element, "hi")
-      
-     res.redirect(`/posts/?status=${status}`);
+      let message =  {
+        success: true
+      }
+     res.render(`posts/posts-list`, message)
     })
     .catch((error) => {
       console.log("Error creating post in the DB", error);
