@@ -12,11 +12,51 @@
 <li>{{location}}</li>
 <li>{{email}}</li>
 
-<button><a href="/posts/{{_id}}/edit">Edit</a></button>
+<button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
 <form action="/posts/{{_id}}/delete" method="POST">
-        <button type="submit">Delete</button>
-</form>
-<form action="/posts/{{_id}}/contact" method="GET">
-        <button type="submit">Contact</button>
+        <button class="btn" type="submit">Delete</button>
 </form>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Contact
+</button>
+
+<!-- Modal -->
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Shoot {{name}} a message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/posts/{{_id}}/contact" method="POST">
+          <div class="modal-body">
+              <input name="emailAuthor" type="email" class="form-control" placeholder="Your email address here">  {{!-- that info is just sent as string in the subject of the mail, so the receiving end knows who wrote that mail --}}
+              <input name="subject" type="text" class="form-control  mt-2 mb-2" placeholder="Your subject here">
+            <div class="form-floating">
+              <textarea name="message" class="form-control" placeholder="your message here" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Your message here</label>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send Mail</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h1>NODEMAILER</h1>
+<form action="/posts/{{_id}}/contact" method="post">
+  <label for="">Email</label>
+  <input type="email" name="email" id="">
+  <label for="">Subject</label>
+  <input type="text" name="subject" id="">
+  <label for="">Message</label>
+  <textarea type="text" name="message" id=""></textarea>
+  <button type="submit">Submit</button>
+</form>
