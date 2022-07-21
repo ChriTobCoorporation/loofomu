@@ -1,20 +1,37 @@
-
-
-<form class="login-form d-flex justify-content-center align-items-center flex-column" action="/signup" method="POST">
-  <div class="form-group col-4">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<div class="login-container">
+  <div class="login-form-container">
+    <h1>Create an account</h1>
+    <h4>and join the community!</h4>
+    {{#if errorMessage}}
+      <p class="error-cred">{{errorMessage}}</p>
+    {{/if}}
+    <p class="small-p">Create an account a <a href="/login">or login!</a></p>
+    <form class="login-form" action="/login" method="POST">
+      <div class="form-group col-10">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+        />
+        <small id="emailHelp" class="form-text text-muted">We'll never share
+          your email with anyone else.</small>
+      </div>
+      <div class="form-group col-10">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+        />
+      </div>
+      <button type="submit" class="btn btn-custom col-10">Submit</button>
+    </form>
   </div>
-  <div class="form-group col-4">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <button type="submit" class="btn btn-custom">Submit</button>
-</form>
-
-<object data="/images/music file2-01.svg" width="500" height="500"> </object>
-
-{{#if errorMessage}}
-   {{errorMessage}}
-{{/if}}
+  <object class="log-hero" data="/images/music file2-06.svg" > </object>
+</div>
