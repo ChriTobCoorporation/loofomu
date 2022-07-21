@@ -22,34 +22,36 @@
       Instrument you are looking for / You play
       <input type="text" name="instrument" value="{{instrument}}" placeholder="Guitar, Drums, etc." required />
     </label>
-    <label>
-      Genre:
-      <input name="genre" type="text" value="{{genre}}" placeholder="type in your main genre" required />
-    </label>
-    <label for="experience">Choose your level of experience
-      <select name="experience" id="experience" required>
-        <option value="anyexp">Any experience</option>
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="moderate">Moderate</option>
-        <option value="advanced">Advanced</option>
-        <option value="expert">Expert</option>
+    <label for="genre">Change the Genre
+      <select name="genre" id="genre" required value="{{genre}}">
+        <option value="Rock">Rock</option>
+        <option value="Pop">Pop</option>
+        <option value="Classic">Classic</option>
       </select>
-    </label>
-    <label>
-      Describe what you are looking for :
-      <textarea type="text" name="description" cols="30" rows="10" required>{{description}}</textarea>
-    </label>
-    <label>
-      Your location:
-      <input type="text" value="{{location}}" name="location" required />
-    </label>
-    <label for="file-upload" class="upload-field">
-      Upload an Image
-      <input id="file-upload" type="file" name="image" />
-    </label>
-    <input type="hidden" name="status" value="{{status}}">
-    <button class="submit-btn" type="submit">Submit</button>
+      <label for="experience">Change your level of experience
+        <select name="experience" id="experience" required>
+          <option value="anyexp">Any experience</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="moderate">Moderate</option>
+          <option value="advanced">Advanced</option>
+          <option value="expert">Expert</option>
+        </select>
+      </label>
+      <label>
+        Describe what you are looking for :
+        <textarea type="text" name="description" cols="30" rows="10" required>{{description}}</textarea>
+      </label>
+      <label>
+        Your location:
+        <input type="text" value="{{location}}" name="location" required />
+      </label>
+      <label for="file-upload" class="upload-field">
+        Upload an Image
+        <input id="file-upload" type="file" name="image" />
+      </label>
+      <input type="hidden" name="status" value="{{status}}">
+      <button class="submit-btn" type="submit">Submit</button>
   </form>
   <img class="create-image" src="/images/music file2-02.svg" alt="">
 </div>
