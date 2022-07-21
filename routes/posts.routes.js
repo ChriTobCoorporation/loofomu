@@ -30,11 +30,12 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 
 // CREATE: Process form
 router.post("/posts/create", summer.single("image"), isLoggedIn,  (req, res, next) => {
-console.log("xxxxxxxxxxxxxx")
 
 let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
 console.log(req.body)
-image = req.file.path
+if(req.file.path.length() >0) {image = req.file.path}
+
+
 Post.create({
     author_id,
     image,
@@ -78,19 +79,15 @@ router.get("/posts/:postId", (req, res, next) => {
 
 })
 
-
-//--> check session.user = post.author, if he is allowed to edit/delete
 // UPDATE: Render form
 router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
 
   Post.findById(postId)
     .then((postDetails) => {
-//      console.log("huhu", req.session.user._id, "haha", postDetails.author_id.toString())
        if (req.session.user._id !== postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        }
-       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -108,7 +105,8 @@ router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, re
   let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
   console.log(req.body)
   status = req.body.status[status.length - 1]
-  image = req.file.path
+  if(req.file.path) image = req.file.path
+
   Post.findByIdAndUpdate(postId, {
     author_id,
     image,

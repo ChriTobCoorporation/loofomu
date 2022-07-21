@@ -38,7 +38,10 @@ const postSchema = new Schema(
         required: true
     },
     location: String,
-    image: String,
+    image: {
+        type: String,
+        default: "/images/noImageAvailable.png"
+    }
   },
   {
     timestamps: true,
