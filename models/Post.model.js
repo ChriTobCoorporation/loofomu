@@ -7,7 +7,7 @@ const postSchema = new Schema(
         ref: 'User'},
     status: {
         type: String,
-        enum: ["Musician", "Band"]
+        enum: ["musician", "band"]
     }, 
     name: {
         type: String,

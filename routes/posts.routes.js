@@ -36,7 +36,6 @@ let {author_id, image, name, status, title, genre, instrument, experience, descr
 console.log(req.body)
 if(req.file.path) {image = req.file.path}
 
-
 email = req.session.user.email
 author_id = req.session.user._id
 console.log("email:" ,email)
@@ -59,6 +58,7 @@ console.log(element, "hi")
       let message =  {
         success: true
       }
+
      res.render(`posts/posts-list`, message)
     })
     .catch((error) => {
@@ -144,11 +144,13 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
   const {postId} = req.params;
   
   Post.findById(postId)
+  
   .then((post) => {
-    (req.session.user._id == post.author_id)
-    return Post.findByIdAndRemove(postId)
+   if(req.session.user._id == post.author_id)
+   return Post.findByIdAndRemove(postId)
   })
   .then((removedPost)=> {
+    console.log(removedPost)
     res.redirect(`/posts/?status=${removedPost.status}`);
   })
   .catch( (error) => {
