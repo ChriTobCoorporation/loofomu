@@ -33,17 +33,12 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 router.post("/posts/create", summer.single("image"), isLoggedIn,  (req, res, next) => {
 
 let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
-console.log(req.body)
-<<<<<<< HEAD
-if(req.file.path.length() >0) {image = req.file.path}
+if(req.file.path) {image = req.file.path}
 
-
-=======
-image = req.file.path
+//image = req.file.path
 email = req.session.user.email
 author_id = req.session.user._id
 console.log("email:" ,email)
->>>>>>> bee4ad11b1973139f32008a8b9d5ac1efd3f821b
 Post.create({
     author_id,
     image,
@@ -93,21 +88,14 @@ router.get("/posts/:postId", (req, res, next) => {
 // UPDATE: Render form
 router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
-  //console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
   Post.findById(postId)
     .then((postDetails) => {
-<<<<<<< HEAD
-       if (req.session.user._id !== postDetails.author_id) {
-        res.render("posts/post-edit", postDetails);
-       }
-=======
-    console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
        if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
+       } else {
+        res.send("not allowed")
        }
-       res.send("not allowed")
-       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
->>>>>>> bee4ad11b1973139f32008a8b9d5ac1efd3f821b
+
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -125,13 +113,9 @@ router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, re
   let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
   console.log(req.body)
   status = req.body.status[status.length - 1]
-<<<<<<< HEAD
   if(req.file.path) image = req.file.path
 
-=======
-  image = req.file.path
   author_id = req.session.user._id
->>>>>>> bee4ad11b1973139f32008a8b9d5ac1efd3f821b
   Post.findByIdAndUpdate(postId, {
     author_id,
     image,
