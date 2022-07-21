@@ -8,42 +8,27 @@
 <div class="collapse" id="collapseFilters">
   <div class="card card-body">
     <form action="/posts/" method="POST">
-      <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGenre"
-          aria-expanded="false" aria-controls="collapseGenre">
-          Genre
-        </button>
-      </p>
-      <div class="collapse" id="collapseGenre">
+
         <select name="genre">
+          <option disabled selected value> -- select a genre -- </option>
           <option value="Rock">Rock</option>
           <option value="Pop">Pop</option>
           <option value="Classic">Classic</option>
           <option value="Punk">Punk</option>
         </select>
-      </div>
-      <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstrument"
-          aria-expanded="false" aria-controls="collapseInstrument">
-          Instrument
-        </button>
-      </p>
-      <div class="collapse" id="collapseInstrument">
+
+
         <select name="instrument">
+          <option disabled selected value> -- select a instrument -- </option>
           <option value="Guitar">Guitar</option>
           <option value="Drums">Drums</option>
           <option value="Bass">Bass</option>
           <option value="Flute">Flute</option>
         </select>
-      </div>
-      <p>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExperience"
-          aria-expanded="false" aria-controls="collapseExperience">
-          Experience
-        </button>
-      </p>
-      <div class="collapse" id="collapseExperience">
+
+
         <select name="experience">
+          <option disabled selected value> -- select exp -- </option>
           <option value="anyexp">Any Experience</option>
           <option value="beginner">Beginner</option>
           <option value="intermediate">Intermediate</option>
@@ -51,9 +36,15 @@
           <option value="advanced">Advanced</option>
           <option value="expert">Expert</option>
         </select>
-      </div>
-      <button type="submit">apply filters</button>
-      {{!-- <button type="">Reset all</button> --}}
+
+      <input type="hidden" name="status" value="{{postsArr.[0].status}}">
+            
+      <br>
+
+  <button class="btn btn-primary" type="submit" aria-expanded="false" aria-controls="collapseFilters">
+    apply filters
+  </button>
+  
     </form>
   </div>
 </div>

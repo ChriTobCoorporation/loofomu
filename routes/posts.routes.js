@@ -24,6 +24,16 @@ router.get("/posts", (req, res, next) => {
     })
 });
 
+router.post("/posts", (req, res, next) => {
+  console.log("mMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+ console.log(req.body);
+ const test =new URLSearchParams(req.body).toString()
+ res.redirect(`/posts/?${test}`);
+
+});
+
+
+
 
 // CREATE: Render form
 router.get("/posts/create", isLoggedIn, (req, res, next) => {
