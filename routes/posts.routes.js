@@ -9,7 +9,13 @@ router.get("/posts", (req, res, next) => {
 
   Post.find()
     .then((postsFromDB) => {
-      const filteredData = postsFromDB.filter((e) => e.status == req.query.status)
+      const filteredData = postsFromDB.filter(function(post) {
+        for (let key in req.query) {
+          if (post[key] === undefined || post[key] != req.query[key])
+            return false;
+        }
+        return true;
+      });
       res.render("posts/posts-list", {postsArr : filteredData});
     })
     .catch((error) => {
