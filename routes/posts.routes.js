@@ -1,9 +1,5 @@
 const Post = require("../models/Post.model");
-const User = require("../models/User.model");
-const { Model } = require("mongoose");
 const isLoggedIn = require("../middleware/isLoggedIn");
-const isAuthor = require("../middleware/isAuthor");
-const session = require("express-session");
 const summer = require("../utils/cloudinary")
 const router = require("express").Router();
 var nodemailer = require('nodemailer')
@@ -25,7 +21,6 @@ router.get("/posts", (req, res, next) => {
 
 // CREATE: Render form
 router.get("/posts/create", isLoggedIn, (req, res, next) => {
-  console.log(req.session.user)
   res.render("posts/post-create")
 })
 
@@ -33,12 +28,12 @@ router.get("/posts/create", isLoggedIn, (req, res, next) => {
 router.post("/posts/create", summer.single("image"), isLoggedIn,  (req, res, next) => {
 
 let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
-console.log(req.body)
-if(req.file.path) {image = req.file.path}
+
+if(Object.keys(req).includes("file")) {image = req.file.path}
 
 email = req.session.user.email
 author_id = req.session.user._id
-console.log("email:" ,email)
+
 Post.create({
     author_id,
     image,
@@ -53,13 +48,8 @@ Post.create({
     email,
   })
 
-    .then((element) => {
-console.log(element, "hi")
-      let message =  {
-        success: true
-      }
-
-     res.render(`posts/posts-list`, message)
+    .then(() => {
+     res.redirect(`/posts/?status=${status}`);
     })
     .catch((error) => {
       console.log("Error creating post in the DB", error);
@@ -74,9 +64,6 @@ router.get("/posts/:postId", (req, res, next) => {
 
   Post.findById(postId)
     .then((postDetails) => {
-      const data = {
-        postDetails: postDetails
-      };
       res.render("posts/post-details", postDetails);
     })
     .catch((error) => {
@@ -97,8 +84,6 @@ router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
        } else {
         res.send("not allowed")
        }
-
-       //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX add some response
     })
     .catch((error) => {
       console.log("Error getting post details from DB", error);
@@ -108,14 +93,13 @@ router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
 });
 
 // UPDATE: Process form
-/////////bestätigungsnachricht hinzufügen!!!!!!!!!!!!!!!!!!!!
 router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, res, next) => {
-  console.log("xxxxxxxxxxxxxx", req.file)
   const postId = req.params.postId
   let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
-  console.log(req.body)
-  status = req.body.status[status.length - 1]
-  image = req.file.path
+  
+  status = req.body.status[0]
+  if(Object.keys(req).includes("file")) {image = req.file.path}
+
   author_id = req.session.user._id
   Post.findByIdAndUpdate(postId, {
     author_id,
@@ -130,7 +114,7 @@ router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, re
     location,
     email
   })
-    .then((edited) => {
+    .then(() => {
       res.redirect(`/posts/?status=${status}`);
     })
     .catch((error) => {
