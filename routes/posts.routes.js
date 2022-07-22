@@ -93,7 +93,7 @@ router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
 router.post("/posts/:postId/edit", summer.single("image"), isLoggedIn,  (req, res, next) => {
   const postId = req.params.postId
   let {author_id, image, name, status, title, genre, instrument, experience, description, location, email} = req.body
-  status = req.body.status[0]
+  status = req.body.status
   if(Object.keys(req).includes("file")) {image = req.file.path}
   author_id = req.session.user._id
   Post.findByIdAndUpdate(postId, {
