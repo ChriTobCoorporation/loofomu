@@ -7,7 +7,7 @@ const postSchema = new Schema(
         ref: 'User'},
     status: {
         type: String,
-        enum: ["musician", "band"]
+        enum: ["Musician", "Band"]
     }, 
     name: {
         type: String,
@@ -26,7 +26,9 @@ const postSchema = new Schema(
         required: true
     },
     genre: {
-        type: String
+        type: String,
+        enum: ["Rock", "Pop", "Classic"],
+        required: true
     },
     email: {
         type: String,

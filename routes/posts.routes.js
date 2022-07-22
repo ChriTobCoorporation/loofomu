@@ -2,7 +2,8 @@ const Post = require("../models/Post.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const summer = require("../utils/cloudinary")
 const router = require("express").Router();
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
+const { Session } = require("express-session");
 // READ: List all posts + filter band/musicians by query
 router.get("/posts", (req, res, next) => {
   Post.find()
@@ -63,6 +64,7 @@ router.get("/posts/:postId", (req, res, next) => {
   const postId = req.params.postId;
   Post.findById(postId)
     .then((postDetails) => {
+      postDetails.session = req.session
       res.render("posts/post-details", postDetails);
     })
     .catch((error) => {

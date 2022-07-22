@@ -1,12 +1,10 @@
-<div class="details-main">
 <div class="details-container">
   <div class="img-ctn">
-        <h4>Hey there, it´s</h4>
-      <h4 class="details-name">{{name}}</h4>
+    <h4>Hey here is</h4>
+    <h4 class="details-name">{{name}}</h4>
     <img class="details-header" src="{{image}}" alt=""><br>
-    <h4 class="details-subhead" >{{status}}</h4>
-            <h4>from</h4>
-      <h4 class="details-name">{{location}}</h4>
+    <h4>from</h4>
+    <h4 class="details-name">{{location}}</h4>
   </div>
 
   <div class="details-container-info">
@@ -22,22 +20,31 @@
     <hr id="descr-hr">
     </div>
     <div class="another-button-div">
+      {{#ifEquals author_id this.session.user._id }}
       <div class="andanotherone">
         <div class="notanotherdiv">
           <button id="btnd2" class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
         </div>
         <form class="details-btn" action="/posts/{{_id}}/delete" method="POST">
           <button class="btn" id="btnd1" type="submit">Delete</button>
+          
         </form>
       </div>
+      {{/ifEquals}}
           <button type="button" id="contact-btn" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Contact
         </button>
     </div>
   <!-- Button trigger modal -->
 
+    
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Contact
+    </button>
   </div>
-</div>
 </div>
 <!-- Modal -->
 
@@ -63,7 +70,13 @@
             </form>
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send Mail</button>
+      </form>
+    </div>
   </div>
+</div>
 
 
 {{!-- <h1>NODEMAILER</h1>

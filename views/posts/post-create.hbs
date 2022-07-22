@@ -1,53 +1,57 @@
-
 <div class="create-container">
   <form class="create-form" action="/posts/create" method="POST" enctype="multipart/form-data">
     <h1>Create a post</h1>
     <label>
       Looking for a band or musician?
       <select name="status">
-        <option  value="musician">Musician</option>
-        <option value="band">Band</option>
+        <option value="Musician">Musician</option>
+        <option value="Band">Band</option>
       </select>
     </label>
     <label>
       Title:
-      <input type="text" name="title" placeholder="Something like: Guitar player looking for punk band!" required/>
+      <input type="text" name="title" placeholder="Something like: Guitar player looking for punk band!" required />
     </label>
     <label>
       Your name / name of your band
-      <input type="text" name="name" required/>
+      <input type="text" name="name" required />
     </label>
     <label>
       Instrument you are looking for / You play
-      <input type="text" name="instrument" placeholder="Guitar, Drums, etc." required/>
+      <input type="text" name="instrument" placeholder="Guitar, Drums, etc." required />
     </label>
-    <label>
-      Genre:
-      <input name="genre" type="text" placeholder="type in your main genre" required/>
-    </label>
-    <label for="experience">Choose your level of experience
-      <select name="experience" id="experience" required>
-        <option value="anyexp">Any experience</option>
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="moderate">Moderate</option>
-        <option value="advanced">Advanced</option>
-        <option value="expert">Expert</option>
-      </select>
-    </label>
-    <label>
-      Describe what you are looking for :
-      <textarea type="text" name="description" cols="30" rows="10" required></textarea>
-    </label>
-    <label>
-      Your location:
-      <input type="text" name="location" required />
-    </label>
-    <label for="file-upload" class="upload-field">
-      Upload an Image
-      <input  id="file-upload" type="file" name="image" value="public/images/noImageAvailable.png"/>
-    </label>
-    <button class="submit-btn" type="submit">Submit</button>
+      <label for="genre">Genre:
+        <select name="genre" id="genre" required>
+          <option disabled selected value> -- Choose your main Genre: -- </option>
+          <option value="Rock">Rock</option>
+          <option value="Pop">Pop</option>
+          <option value="Classic">Classic</option>
+        </select>
+
+        <label for="experience">Choose your level of Experience
+          <select name="experience" id="experience" required>
+            <option disabled selected value> -- your Experience: -- </option>
+            <option value="anyexp">Any experience</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="moderate">Moderate</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
+          </select>
+        </label>
+        <label>
+          Describe what you are looking for :
+          <textarea type="text" name="description" cols="30" rows="10" required></textarea>
+        </label>
+        <label>
+          Your location:
+          <input type="text" name="location" required />
+        </label>
+        <label for="file-upload" class="upload-field">
+          Upload an Image
+          <input id="file-upload" type="file" name="image" value="public/images/noImageAvailable.png" />
+        </label>
+        <button class="submit-btn" type="submit">Submit</button>
   </form>
-  <img class = "create-image" src="/images/music file2-03.svg" alt="">
+  <img class="create-image" src="/images/music file2-03.svg" alt="">
 </div>
