@@ -136,15 +136,15 @@ router.post("/posts/:postId/contact", isLoggedIn, (req, res, next) => {
   Post.findById(postId)
   .then((foundPost) => {
   let transporter = nodemailer.createTransport({
-    service: 'Hotmail',
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-      user: process.env.USERMAIL,
-      pass: process.env.USERPW
-
+        user: 'leo.predovic@ethereal.email',
+        pass: 'UhYx9PN76Ff7RG8meE'
     }
   })
   transporter.sendMail({
-    from: `"LOOFOMU" <maxtobiasconrad@hotmail.com>`,
+    from: `"LOOFOMU" <loofomu@loofomu.com>`,
     to: foundPost.email,
     subject: `message from: ${emailAuthor} subject: ${subject}`,
     text: message,
