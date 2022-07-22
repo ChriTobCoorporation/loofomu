@@ -23,8 +23,6 @@ router.get("/posts", (req, res, next) => {
     })
 });
 router.post("/posts", (req, res, next) => {
-  console.log("mMMMMMMMMMMMMMMMMMMMMMMMMMMM");
- console.log(req.body);
  const test =new URLSearchParams(req.body).toString()
  res.redirect(`/posts/?${test}`);
 });
@@ -77,7 +75,6 @@ router.get("/posts/:postId/edit",  isLoggedIn, (req, res, next) => {
   const { postId } = req.params;
   Post.findById(postId)
     .then((postDetails) => {
-    console.log("huhu", req.session.user._id, "haha", postDetails.author_id)
        if (req.session.user._id == postDetails.author_id) {
         res.render("posts/post-edit", postDetails);
        } else {
@@ -125,7 +122,6 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
    return Post.findByIdAndRemove(postId)
   })
   .then((removedPost)=> {
-    console.log(removedPost)
     res.redirect(`/posts/?status=${removedPost.status}`);
   })
   .catch( (error) => {
@@ -135,20 +131,18 @@ router.post("/posts/:postId/delete", isLoggedIn, (req, res, next) => {
 })
 //sending an email to author of the post.
 router.post("/posts/:postId/contact", isLoggedIn, (req, res, next) => {
-  console.log(req.body, "huhu")
   const postId = req.params.postId
   let {emailAuthor, subject, message } = req.body
   Post.findById(postId)
   .then((foundPost) => {
-    console.log(foundPost)
   let transporter = nodemailer.createTransport({
     service: 'Hotmail',
     auth: {
-      user: 'maxtobiasconrad@hotmail.com',
-      pass: 'Lilalila1'
+      user: process.env.USERMAIL,
+      pass: process.env.USERPW
+
     }
   })
-  console.log(foundPost.email)
   transporter.sendMail({
     from: `"LOOFOMU" <maxtobiasconrad@hotmail.com>`,
     to: foundPost.email,
@@ -158,32 +152,9 @@ router.post("/posts/:postId/contact", isLoggedIn, (req, res, next) => {
   })
   })
   .then(info => {
-    console.log(info)
     res.redirect("/")
 })
   .catch(error => console.log(error))
 })
-// XxX - hardcoded mail sending for testing . XxX //
-// router.post('/posts/:postId/contact', (req, res, next) => {
-//   let { emailSender, subject, message } = req.body;
-//   let transporter = nodemailer.createTransport({
-//     service: 'Hotmail',
-//         auth: {
-//            user: 'maxtobiasconrad@hotmail.com',
-//            pass: "Lilalila1"
-//     },
-//     debug: true,
-//     logger: true
-//   });
-//   console.log(transporter)
-//   transporter.sendMail({
-//     from: '"My Awesome Project " <maxtobiasconrad@hotmail.com>',
-//     to: "maktub1006@gmail.com",
-//     subject: "hi",
-//     text: "message",
-//     html: `<b>"hi"</b>`
-//   })
-//   .then(info => console.log('message', {subject, message, info}))
-//   .catch(error => console.log(error));
-// });
+
 module.exports = router;

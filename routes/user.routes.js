@@ -7,8 +7,6 @@ const router = require("express").Router();
 router.get("/user", (req, res, next) => {
     Post.find()
     .then((postsFromDB) => {
-      console.log(postsFromDB);
-
       const allBandPosts = postsFromDB.filter((e) => e.status == "Band" && e.author_id == req.session.user._id)
       const allMusicianPosts = postsFromDB.filter((e) => e.status == "Musician" && e.author_id == req.session.user._id)
 
