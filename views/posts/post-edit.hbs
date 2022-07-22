@@ -3,13 +3,6 @@
 <div class="create-container">
   <form class="create-form" action="/posts/{{_id}}/edit" method="POST" enctype="multipart/form-data">
     <label>
-      Looking for a band or musician?
-      <select name="status">
-        <option value="Musician">Musician</option>
-        <option value="Band">Band</option>
-      </select>
-    </label>
-    <label>
       Title:
       <input type="text" name="title" value="{{title}}"
         placeholder="Something like: Guitar player looking for punk band!" required />
@@ -55,11 +48,11 @@
         <input type="text" value="{{location}}" name="location" required />
       </label>
       <label for="file-upload" class="upload-field">
-        Upload an Image
+        Change Image
         <input id="file-upload" type="file" name="image" />
       </label>
       <input type="hidden" name="status" value="{{status}}">
-      <button class="submit-btn" type="submit">Submit</button>
+      <button class="submit-btn" type="submit">Submit Changes</button>
   </form>
   <img class="create-image" src="/images/music file2-02.svg" alt="">
 </div>
