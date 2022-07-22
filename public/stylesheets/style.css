@@ -239,6 +239,12 @@ text-decoration: none;
   align-items: center;
   border-radius: 10px;
 }
+@media screen and (max-width: 992px) {
+  .details-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .details-container img {
   width: 30vw;
@@ -331,6 +337,7 @@ text-decoration: none;
 #user-btn {
   max-width: 15vw;
 }
+
 footer {
   font-size: 0.7rem;
   text-align: center;
