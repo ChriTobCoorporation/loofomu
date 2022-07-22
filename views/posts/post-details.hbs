@@ -23,12 +23,11 @@
     <div class="another-button-div">
       {{#ifEquals author_id this.session.user._id }}
       <div class="andanotherone">
-        <div class="notanotherdiv">
-          <button id="btnd2" class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
-        </div>
+        <form class="details-btn" action="/posts/{{_id}}/edit" method="GET">
+          <button id="btnd2" class="btn" type="submit">Edit</button>
+        </form>
         <form class="details-btn" action="/posts/{{_id}}/delete" method="POST">
           <button class="btn" id="btnd1" type="submit">Delete</button>
-          
         </form>
       </div>
       {{/ifEquals}}
