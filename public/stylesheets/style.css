@@ -134,14 +134,14 @@ input[type="file"] {
 .create-container {
   display: flex;
   justify-content: space-evenly;
-  
+  flex-direction: row;
 }
 
 .create-image {
   max-width: 50vw;
   height: auto;
   align-self: flex-start;
-}
+} 
 
 .cards-container {
   display: flex;

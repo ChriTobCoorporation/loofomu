@@ -3,6 +3,7 @@
     <h4>Hey here is</h4>
     <h4 class="details-name">{{name}}</h4>
     <img class="details-header" src="{{image}}" alt=""><br>
+    <h4 class="details-subhead">{{status}}</h4>
     <h4>from</h4>
     <h4 class="details-name">{{location}}</h4>
   </div>
@@ -41,9 +42,9 @@
 
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {{!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Contact
-    </button>
+    </button> --}}
   </div>
 </div>
 <!-- Modal -->
@@ -57,10 +58,10 @@
           </div>
           <form action="/posts/{{_id}}/contact" method="POST">
             <div class="modal-body">
-                <input name="emailAuthor" type="email" class="form-control" placeholder="Your email address here">  {{!-- that info is just sent as string in the subject of the mail, so the receiving end knows who wrote that mail --}}
-                <input name="subject" type="text" class="form-control  mt-2 mb-2" placeholder="Your subject here">
+                <input name="emailAuthor" required type="email" class="form-control" placeholder="Your email address here">  {{!-- that info is just sent as string in the subject of the mail, so the receiving end knows who wrote that mail --}}
+                <input name="subject" type="text" required class="form-control  mt-2 mb-2" placeholder="Your subject here">
               <div class="form-floating">
-                <textarea name="message" class="form-control" placeholder="your message here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <textarea required name="message" class="form-control" placeholder="your message here" id="floatingTextarea2" style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Your message here</label>
               </div>
             </div>
@@ -70,10 +71,6 @@
             </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Send Mail</button>
-      </form>
     </div>
   </div>
 </div>

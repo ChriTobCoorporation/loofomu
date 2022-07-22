@@ -27,7 +27,7 @@ const postSchema = new Schema(
     },
     genre: {
         type: String,
-        enum: ["Rock", "Pop", "Classic"],
+        enum: ["Rock", "Pop", "Classic", "Punk", "Metal", "Alternative", "Electronic", "Hip Hop", "R'n'B", "Folk"],
         required: true
     },
     email: {
