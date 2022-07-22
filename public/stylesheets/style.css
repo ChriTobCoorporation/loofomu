@@ -156,6 +156,9 @@ input[type="file"] {
   91px 79px 168px rgba(0, 0, 0, 0.17)
 ;
 }
+.card-title{
+  font-weight: 600;
+}
 .card-body{
   display: flex;
   flex-direction: column;
@@ -240,6 +243,9 @@ text-decoration: none;
 .details-container img {
   width: 30vw;
   border-radius: 10px;
+  padding:0.5rem;
+  margin-top:0.6rem;
+  background-color: rgb(244,90,73);
 }
 .details-name {
   font-weight: 600;
@@ -279,22 +285,78 @@ text-decoration: none;
 .descr-ctn{
   max-width: 40vw;
   min-height: 18vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.descr-ctn p {
+  margin: 0;
 }
 .details-main h3 {
   font-weight: 700;
 }
 .details-btn {
-  display: flex;
   margin: 0;
   padding: 0;
-  width: 30vw;
+  max-width: 10rem;
 }
 .another-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items:center;
+}
+.andanotherone{
+  display: flex;
+  justify-content: center;
+
+}
+#btnd1{
+  max-width: 100%;
+
+}
+#btnd2{
+  max-width: 100%;
+  margin-left: -1rem;
+}
+#hero-index {
+  max-width: 35vw;
+}
+#descr-hr{
+  width: 60%;
+  align-self: center;
+  margin: 0.8rem;
+  border: 1px solid rgb(70,87,78)
+}
+#user-btn {
+  max-width: 15vw;
+}
+footer {
+  font-size: 0.7rem;
+  text-align: center;
+  background-color: #46574e;
+  color: white;
+  width: 100%;
+    margin-top: -0.5em;
+    padding: 1em;
+    position: fixed; 
+    bottom: 0;
+    margin-left: -50px;
+}
+#contact-btn {
+  background-color: #46574e;
+  color: white;
+  border: none;
+}
+.notanotherdiv{
+  width: 10rem;
+}
+.filter-form{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#hero-index {
-  max-width: 35vw;
+.filter-form select {
+  margin-top: 1rem
 }

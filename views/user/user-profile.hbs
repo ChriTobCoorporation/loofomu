@@ -1,44 +1,50 @@
-<h1>Welcome back <br> {{currentSession.user.email}}</h1>
+<h2>Welcome back {{currentSession.user.email}}</h2>
 <hr>
 
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBandPosts"
+<button class="btn btn-primary" id="user-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBandPosts"
     aria-expanded="false" aria-controls="collapseBandPosts">
     Your Band Posts
 </button>
 </p>
 <div class="collapse" id="collapseBandPosts">
     {{#each currentSession.allBandPosts}}
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
-            <p class="card-text">{{this.genre}}</p>
-            <p class="card-text">{{this.instrument}}</p>
-            <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
-        </div>
+  <div class="card" style="width: 18rem;">
+  <a href="/posts/{{this._id}}" >
+  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  </a>
+    <div class="card-body">
+      <h5 class="card-title">{{this.name}}</h5>
+      <p id="status-card" class="card-text">{{this.status}}</p>
+      <p class="card-text"><span id="categories">Genre:</span>  {{this.genre}}</p>
+      <p class="card-text"><span id="categories">Instrument:</span> {{this.instrument}}</p>
+      <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
     </div>
+  </div>
     {{/each}}
 </div>
 <p>
 
 <hr>
 
-<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMusicianPosts"
+<button class="btn btn-primary" id="user-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMusicianPosts"
     aria-expanded="false" aria-controls="collapseMusicianPosts">
     Your Musician Posts
 </button>
 </p>
-<div class="collapse" id="collapseMusicianPosts">
+<div class="cards-container collapse" id="collapseMusicianPosts">
 {{#each currentSession.allMusicianPosts}}
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  <div class="card" style="width: 18rem;">
+  <a href="/posts/{{this._id}}" >
+  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+  </a>
     <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text">{{this.genre}}</p>
-        <p class="card-text">{{this.instrument}}</p>
-        <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+      <h5 class="card-title">{{this.name}}</h5>
+      <p id="status-card" class="card-text">{{this.status}}</p>
+      <p class="card-text"><span id="categories">Genre:</span>  {{this.genre}}</p>
+      <p class="card-text"><span id="categories">Instrument:</span> {{this.instrument}}</p>
+      <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
     </div>
-</div>
+  </div>
 {{/each}}
 </div>
 <p>

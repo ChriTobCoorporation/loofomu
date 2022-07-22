@@ -12,23 +12,27 @@
   <div class="details-container-info">
     <h3>{{title}}</h3>
     
-    
     <div class="cata">
       <li> <span id="categories">Genre:</span> <span id="span-details">{{genre}}</span> </li>
-      <li> <span id="categories">Instrument´(s):</span> {{instrument}}</li>
+      <li> <span id="categories">Instrument(´s):</span> {{instrument}}</li>
       <li> <span id="categories">Experience:</span> {{experience}}</li>
     </div> 
     <div class="descr-ctn">
     <p>{{description}}</p> 
+    <hr id="descr-hr">
     </div>
     <div class="another-button-div">
-      <form class="details-btn" action="/posts/{{_id}}/delete" method="POST">
-              <button class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
-              <button class="btn" type="submit">Delete</button>
-      </form>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Contact
-      </button>
+      <div class="andanotherone">
+        <div class="notanotherdiv">
+          <button id="btnd2" class="btn"><a href="/posts/{{_id}}/edit">Edit</a></button>
+        </div>
+        <form class="details-btn" action="/posts/{{_id}}/delete" method="POST">
+          <button class="btn" id="btnd1" type="submit">Delete</button>
+        </form>
+      </div>
+          <button type="button" id="contact-btn" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Contact
+        </button>
     </div>
   <!-- Button trigger modal -->
 
@@ -54,8 +58,8 @@
               </div>
             </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Send Mail</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </form>
           </div>
         </div>
