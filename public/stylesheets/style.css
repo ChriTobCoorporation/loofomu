@@ -367,3 +367,9 @@ footer {
 .filter-form select {
   margin-top: 1rem
 }
+.list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,83 +1,75 @@
 
 <p>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
-    aria-expanded="false" aria-controls="collapseFilters">
-    search filters
-  </button>
-</p>
-<div class="collapse" id="collapseFilters">
-  <div class="card col-5 filter-card card-body">
-    <form class="filter-form" action="/posts/" method="POST">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters"
+      aria-expanded="false" aria-controls="collapseFilters">
+      search filters
+    </button>
+  </p>
 
-        <select name="genre">
-          <option disabled selected value> -- select a genre -- </option>
-          <option value="Rock">Rock</option>
-          <option value="Pop">Pop</option>
-          <option value="Classic">Classic</option>
-          <option value="Punk">Punk</option>
-          <option value="Metal">Metal</option>
-          <option value="Alternative">Alternative</option>
-          <option value="Electronic">Electronic</option>
-          <option value="Hip Hop">Hip Hop</option>
-          <option value="R'n'B">R'n'B</option>
-          <option value="Folk">Folk</option>
-        </select>
+  <div class="collapse" id="collapseFilters">
+    <div class="card col-5 filter-card card-body">
+      <form class="filter-form" action="/posts/" method="POST">
 
-
-        <select name="instrument">
-          <option disabled selected value> -- select a instrument -- </option>
-          <option value="Guitar">Guitar</option>
-          <option value="Drums">Drums</option>
-          <option value="Bass">Bass</option>
-          <option value="Flute">Flute</option>
-        </select>
+          <select name="genre">
+            <option disabled selected value> -- select a genre -- </option>
+            <option value="Rock">Rock</option>
+            <option value="Pop">Pop</option>
+            <option value="Classic">Classic</option>
+            <option value="Punk">Punk</option>
+            <option value="Metal">Metal</option>
+            <option value="Alternative">Alternative</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Hip Hop">Hip Hop</option>
+            <option value="R'n'B">R'n'B</option>
+            <option value="Folk">Folk</option>
+          </select>
 
 
-        <select name="experience">
-          <option disabled selected value> -- select experience -- </option>
-          <option value="anyexp">Any Experience</option>
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="moderate">Moderate</option>
-          <option value="advanced">Advanced</option>
-          <option value="expert">Expert</option>
-        </select>
+          <select name="instrument">
+            <option disabled selected value> -- select a instrument -- </option>
+            <option value="Guitar">Guitar</option>
+            <option value="Drums">Drums</option>
+            <option value="Bass">Bass</option>
+            <option value="Flute">Flute</option>
+          </select>
 
-      <input type="hidden" name="status" value="{{postsArr.[0].status}}">
-            
-      <br>
 
-  <button class="btn btn-primary" type="submit" aria-expanded="false" aria-controls="collapseFilters">
-    apply filters
-  </button>
-  
-    </form>
-  </div>
-</div>
-<div class="cards-container">
-  {{#each postsArr}}
-  <div class="card" style="width: 18rem;">
-  <a href="/posts/{{this._id}}" >
-  <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
-  </a>
-    <div class="card-body">
-      <h5 class="card-title">{{this.name}}</h5>
-      <p id="status-card" class="card-text">{{this.status}}</p>
-      <p class="card-text"><span id="categories">Genre:</span>  {{this.genre}}</p>
-      <p class="card-text"><span id="categories">Instrument:</span> {{this.instrument}}</p>
-      <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+          <select name="experience">
+            <option disabled selected value> -- select experience -- </option>
+            <option value="anyexp">Any Experience</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="moderate">Moderate</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
+          </select>
+
+        <input type="hidden" name="status" value="{{postsArr.[0].status}}">
+              
+        <br>
+
+    <button class="btn btn-primary" type="submit" aria-expanded="false" aria-controls="collapseFilters">
+      apply filters
+    </button>
+    
+      </form>
     </div>
   </div>
-  {{/each}}
-</div>
-{{#if success}}
-<script>alert("successfully created post")</script> 
-{{!-- <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="d-flex">
-    <div class="toast-body">
-    Hello, world! This is a toast message.
-   </div>
-    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+
+  <div class="cards-container">
+    {{#each postsArr}}
+    <div class="card" style="width: 18rem;">
+    <a href="/posts/{{this._id}}" >
+    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+    </a>
+      <div class="card-body">
+        <h5 class="card-title">{{this.name}}</h5>
+        <p id="status-card" class="card-text">{{this.status}}</p>
+        <p class="card-text"><span id="categories">Genre:</span>  {{this.genre}}</p>
+        <p class="card-text"><span id="categories">Instrument:</span> {{this.instrument}}</p>
+        <a href="/posts/{{this._id}}" class="btn btn-primary">See details</a>
+      </div>
+    </div>
+    {{/each}}
   </div>
-</div> --}}
-{{/if}}
+
