@@ -1,6 +1,6 @@
 # LOOFOMU 🎸
 
-![Screenshot of LOOFOMU UI](https://raw.githubusercontent.com/maktooob/stay_on_track/main/images/Screenshot%202022-06-30%20at%2017.28.25.png)
+![Screenshot of LOOFOMU UI](https://raw.githubusercontent.com/ChriTobCoorporation/loofomu/main/public/images/loofomu.png)
 
 ## About 
 LOOFMU is an app were bands and musicians can connect. You are a band and looking for a guitarist? Post on LOOFOMU and find a match.
