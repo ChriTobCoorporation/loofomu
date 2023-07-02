@@ -10,7 +10,7 @@ const MONGO_URI = require("../utils/consts");
 mongoose
   // .connect(MONGO_URI)
   // for new hosting db
-  .connect(process.env.DATABASE_URL)
+  .connect(MONGO_URI)
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
