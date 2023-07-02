@@ -13,4 +13,4 @@ The app consists of the following features:
 - only author can edit/delete
 
 ## Demo
-https://loofomu.herokuapp.com/
+[https://loofomu.adaptable.app/](https://loofomu.adaptable.app/)
